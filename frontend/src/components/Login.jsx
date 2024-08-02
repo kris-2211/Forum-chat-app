@@ -1,7 +1,7 @@
 // src/Login.js
-import React, { useState ,useContext } from "react";
-import { UserContext }from "../context/UserContext.jsx"
-import { loginUser } from "../services/UserService.js"; 
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext.jsx";
+import { loginUser } from "../services/UserService.js";
 
 import {
   Container,
@@ -32,7 +32,7 @@ const Login = () => {
   const [alertSeverity, setAlertSeverity] = useState("success");
   const [open, setOpen] = useState(false);
   const { email, password } = formData;
-  const {user,token,setUser,setToken}=useContext(UserContext);
+  const { user, token, setUser, setToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleClickShowPassword = () => {
@@ -50,26 +50,24 @@ const Login = () => {
     setOpen(false);
   };
 
-
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser(email,password);
-      
+      const response = await loginUser(email, password);
+
       setUser(response.data);
       setToken(response.token);
       setMessage(response.message);
       setAlertSeverity("success");
       setOpen(true);
-      navigate("/welcome");
-      
+      navigate("/dashboard");
     } catch (error) {
       setMessage(error.response?.data?.message || "Server error");
-      if(error.response?.data?.message=='User Not Found'){
-        setMessage("Create an account")
-        setTimeout(()=>{
-          navigate('/register');
-        },1000);
+      if (error.response?.data?.message == "User Not Found") {
+        setMessage("Create an account");
+        setTimeout(() => {
+          navigate("/register");
+        }, 1000);
       }
       setAlertSeverity("error");
       setOpen(true);
@@ -78,8 +76,18 @@ const Login = () => {
 
   return (
     <Container maxWidth="sm">
-      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose} anchorOrigin={{vertical:'top',horizontal:'right'}}>
-        <Alert style={{borderRadius: '30px'}} onClose={handleClose} severity={alertSeverity} sx={{ width: "100%" }}>
+      <Snackbar
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          style={{ borderRadius: "30px" }}
+          onClose={handleClose}
+          severity={alertSeverity}
+          sx={{ width: "100%" }}
+        >
           {message}
         </Alert>
       </Snackbar>
