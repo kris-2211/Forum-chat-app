@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Sidenav from "../Sidenav";
 
 function Dashboard() {
-  return (
-    <div>Dashboard</div>
-  )
+  return <Sidenav />;
 }
 
-export default Dashboard
+export default Dashboard;
