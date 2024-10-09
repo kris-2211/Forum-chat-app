@@ -1,5 +1,13 @@
 import axios from "axios";
 
+axios.interceptors.request.use((config)=>{
+  const token=localStorage.getItem("token");
+  if(token){
+    config.headers['authorization']=`Bearer ${token}`;
+  }
+  return config;
+})
+
 export const loginUser = async (email, password) => {
   const res = await axios.post("http://localhost:3000/api/user/login", {
     email,

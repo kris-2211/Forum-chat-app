@@ -28,9 +28,9 @@ const userSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:"Forum"
     }],
-    friends:[{
+    chats:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref:"Chats"
     }],
     otp:{
         type:String,
