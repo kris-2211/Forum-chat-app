@@ -1,7 +1,7 @@
 import { ApiError } from "../utils/ApiError.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import {Chat} from "../models/chats.model.js"
-import User from "../models/user.model.js"
+import {User} from "../models/user.model.js"
 
 export const createChat=async (req,res)=>{
     const {user,other} =req.body;

@@ -1,7 +1,7 @@
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import {Forum} from '../models/forums.model.js'
-import { User} from '../models/user.model.js';
+import {User} from '../models/user.model.js';
 
 export const createForum=async (req,res)=>{
     const {title, createdBy}=req.body;
