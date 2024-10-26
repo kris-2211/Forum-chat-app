@@ -8,7 +8,7 @@ const Group = () => {
       <Groupsidebar />
       <Box sx={{ flexGrow: 1, p: 3 }}>
         <Typography variant="h4" gutterBottom>
-          Chats
+          Groups
         </Typography>
       </Box>
     </Box>
