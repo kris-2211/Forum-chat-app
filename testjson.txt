@@ -1,5 +1,5 @@
-
-Register------- In body>json
+===== USER ROUTES ======
+POST /api/user/register          In body>json
 
 {
     "fullname": "rsaasa",
@@ -9,8 +9,48 @@ Register------- In body>json
 }
 
 
-POST /api/user/login------------ In body>json or formdata
+POST /api/user/login               In body>json or formdata
 {
     "email": "sai@gmail.com",
     "password": "hrllo"
 }
+
+POST /api/user/verify-otp      In body>json
+{
+    "email":"",
+    "otp":""
+}
+
+POST /api/user/regenerate-otp       In body>json
+{
+   "fullname":"",
+   "email":""
+}
+POST /api/user/logout
+{
+}
+
+==================== CHATS ROUTES =========================
+
+POST /api/chats/create-chat   body json
+{
+      "user":"self",
+      "other":"friend"
+}
+
+GET /api/chats/search/     request query with username
+
+GET /api/chats/:id     reqest params as chatId
+
+=================== FORUM ROUTES =============================
+
+POST /api/forum/create-forum           body json
+{
+    "title":"",
+    "createdBy":""
+}
+GET /api/forum/search  request query with title
+
+GET /api/forum/:id   request params as forumId
+
+
