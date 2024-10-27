@@ -2,7 +2,7 @@ import React from "react";
 import Sidenav from "./Sidenav";
 
 function Dashboard() {
-  return <div>DashBoard</div>
+  return <Sidenav />;
 }
 
 export default Dashboard;
