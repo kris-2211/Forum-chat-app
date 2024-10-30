@@ -47,16 +47,17 @@ function Login() {
                     <h3 >Login</h3>
                     <form onSubmit={e=>handleSubmit(e)}>
                             <div className="form-group">
-                                <label for="email" className="form-label">Email address</label>
+                                <label htmlFor="email" className="form-label">Email address</label>
                                 <input type="text" className="form-control" id='email' placeholder="Your Email *" onChange={e=>setEmail(e.target.value)} value={email} />
                             </div>
                             <div className="form-group">
-                                <label for="password" className="form-label">Password</label>
+                                <label htmlFor="password" className="form-label">Password</label>
                                 <input type="password" className="form-control" id='password' placeholder="Your Password *" onChange={e=>setPassword(e.target.value)} value={password} />
                             </div>
                             <div className="form-group">
                                 <input type="submit" className="btnSubmit" value="Login" />
                             </div>
+                            {!message && <p style={{ color: "red" }}>Invalid Credentials..</p>}
                             <div className="form-group">
                                 <span className='ForgetPwd'>Forgot Password? Reset </span> <Link to='/forgot' className="links">here</Link><br/>
                                 <span className='ForgetPwd'>Don't have an account? Register </span><Link className='links' to="/register">here</Link>
