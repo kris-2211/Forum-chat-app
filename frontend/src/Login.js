@@ -57,6 +57,7 @@ function Login() {
                             <div className="form-group">
                                 <input type="submit" className="btnSubmit" value="Login" />
                             </div>
+                            {!message && <p style={{ color: "red" }}>Invalid Credentials..</p>}
                             <div className="form-group">
                                 <span className='ForgetPwd'>Forgot Password? Reset </span> <Link to='/forgot' className="links">here</Link><br/>
                                 <span className='ForgetPwd'>Don't have an account? Register </span><Link className='links' to="/register">here</Link>

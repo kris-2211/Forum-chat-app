@@ -35,6 +35,10 @@ function SideDrawer() {
         localStorage.removeItem('userinfo');
         history.push('/')
     }
+    const handleResetPassword = async (e) =>{
+        console.log("reset password");
+        history.push("/reset");
+    }
     const handleClickOpen = (e) => {
         e.preventDefault()
         setOpen(true);
@@ -234,6 +238,9 @@ function SideDrawer() {
         </Button>
         <CustomizedDialogs onClose={handleClose3} open={open3} user={user} />
                             
+        </MenuItem>
+        <MenuItem>
+        <Button onClick={handleResetPassword} >Reset Password</Button>
         </MenuItem>
         <MenuItem>
         <Button onClick={logoutHandler

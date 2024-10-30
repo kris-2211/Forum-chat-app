@@ -1,6 +1,25 @@
 const asyncHandler = require('express-async-handler');
 const generateToken = require('../config/generateToken');
 const User = require('../models/userModel')
+const bcryptjs = require('bcryptjs');
+
+const setPassword = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        user.password = password;
+        await user.save();
+        res.status(200).json({ message: "Password updated successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Error updating password" });
+    }
+};
+
+
+module.exports = setPassword;
 
 const allUsers = asyncHandler(async (req, res) => {
   const keyword = req.query.search
@@ -63,5 +82,5 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser, allUsers };
+module.exports = { registerUser, authUser, allUsers ,setPassword};
 
