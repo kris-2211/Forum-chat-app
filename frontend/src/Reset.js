@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Snackbar, Alert } from '@mui/material';
 import env from './Settings';
 
 function Reset() {
@@ -11,6 +12,9 @@ function Reset() {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState(true);
     const [token, setToken] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('info');
     const history = useHistory();
 
     // Handle form submission
@@ -25,18 +29,31 @@ function Reset() {
                 { headers: { Authorization: `Bearer ${user.token}` } }
             );
             
-            console.log("response"+response.data);
+            console.log("response", response.data);
             if (response.data.message) {
-                alert("Password changed successfully! Please login.");
+                handleSnackbar('Password changed successfully! Please login.', 'success');
                 localStorage.removeItem("userinfo");
                 history.push("/");
             } else {
                 setMessage(false);
+                handleSnackbar('Failed to reset password. Please try again.', 'error');
             }
         } catch (error) {
             console.error("Error updating password:", error);
             setMessage(false);
+            handleSnackbar('Error updating password. Please try again.', 'error');
         }
+    };
+
+    // Snackbar handler
+    const handleSnackbar = (message, severity) => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setOpenSnackbar(true);
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
     };
 
     // Check authentication on component mount
@@ -88,7 +105,19 @@ function Reset() {
                         {!message && <p className="error-message">Failed to reset password. Please try again.</p>}
                     </form>
                 </div>
-            </div>           
+            </div>
+
+            {/* Snackbar Component for Notifications */}
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={5000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

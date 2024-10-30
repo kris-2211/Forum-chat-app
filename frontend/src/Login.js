@@ -47,11 +47,11 @@ function Login() {
                     <h3 >Login</h3>
                     <form onSubmit={e=>handleSubmit(e)}>
                             <div className="form-group">
-                                <label for="email" className="form-label">Email address</label>
+                                <label htmlFor="email" className="form-label">Email address</label>
                                 <input type="text" className="form-control" id='email' placeholder="Your Email *" onChange={e=>setEmail(e.target.value)} value={email} />
                             </div>
                             <div className="form-group">
-                                <label for="password" className="form-label">Password</label>
+                                <label htmlFor="password" className="form-label">Password</label>
                                 <input type="password" className="form-control" id='password' placeholder="Your Password *" onChange={e=>setPassword(e.target.value)} value={password} />
                             </div>
                             <div className="form-group">
